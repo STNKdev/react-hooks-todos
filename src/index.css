@@ -7,6 +7,9 @@ body {
 
 .todo {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  background: #f3f3f3;
 }
 
 .todo.completed span {
@@ -19,11 +22,12 @@ body {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  background: #f3f3f3;
   padding: 1rem;
 }
 
 .todo i {
+  cursor: pointer;
+  padding: 1rem;
   z-index: 2;
 }
 

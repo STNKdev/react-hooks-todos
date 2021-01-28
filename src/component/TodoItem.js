@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function TodoItem({title, id, completed}) {
+export default function TodoItem({title, id, completed, deleteItem}) {
   const [checked, setChecked] = useState(completed);
 
   const classes = ['todo'];
@@ -18,13 +18,15 @@ export default function TodoItem({title, id, completed}) {
           onChange={() => setChecked(!checked)}
         />
         <span>{title}</span>
-
-        <i
-          className="material-icons red-text"
-        >
-          delete
-        </i>
       </label>
+
+      <i
+          className="material-icons red-text"
+          onClick={() => deleteItem(id)}
+      >
+        delete
+      </i>
+
     </li>
   )
 }

@@ -9,17 +9,16 @@ export default function App() {
   const [countId, setCountId] = useState(1);
 
   useEffect(() => {
-    let todosList = localStorage.getItem('todos') || [];
+    let todosList = JSON.parse(localStorage.getItem('todos')) || [];
     if (todosList.length !== 0) {
-      todosList = JSON.parse(todosList);
+      //todosList = JSON.parse(todosList);
       setTodos(todosList);
-      debugger
       setCountId(todosList[todosList.length - 1].id + 1);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos))
+    localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
   const addTodo = (event) => {
@@ -37,9 +36,14 @@ export default function App() {
     }
   };
 
+  const deleteTodo = (id) => {
+    const todosTodos = todos.filter(item => item.id !== id);
+    setTodos(todosTodos);
+  };
+
   return (
       <div className="container">
-        <h1>Todo app</h1>
+        <h1>Список</h1>
 
         <div className="input-field">
           <input
@@ -48,10 +52,10 @@ export default function App() {
               onChange={(event) => setTodoTitle(event.target.value)}
               onKeyPress={addTodo}
           />
-          <label>Todo name</label>
+          <label>Описание задачи</label>
         </div>
 
-        <TodoList todos={todos} />
+        <TodoList todos={todos} deleteItem={deleteTodo} />
       </div>
   );
 }
